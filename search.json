@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "team.html",
+    "href": "team.html",
+    "title": "Digital Biology Lab",
+    "section": "",
+    "text": "Team\n\nPham Viet Thang, PhD, Amsterdam UMC & Vietnam National University\nTran Phuc Khang (VNU, topic: Effects of neutral losses in data-independent acquisition mass spectrometry-based proteomics)\nDoan Van Phong (VNU, topic: encoding of phosphorylated peptides for deep neural networks)\n\nFormer members\n\nLe Gia Duc (VinUni, internship at Amsterdam UMC, topic: protein quantification)\nCan Ha An (VinUni, internship at Amsterdam UMC, topic: protein quantification)\nBui Huy Linh Phuc (VinUni, internship at Amsterdam UMC, topic: protein quantification)"
+  },
+  {
+    "objectID": "datasets.html",
+    "href": "datasets.html",
+    "title": "Digital Biology Lab",
+    "section": "",
+    "text": "Datasets"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Digital Biology Lab",
+    "section": "",
+    "text": "Hello world\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nDec 28, 2024\n\n\nThang V. Pham\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Digital Biology Lab",
+    "section": "",
+    "text": "Hi, we work on computational methods to aid in the analysis of biological samples."
+  },
+  {
+    "objectID": "software.html",
+    "href": "software.html",
+    "title": "Digital Biology Lab",
+    "section": "",
+    "text": "We are maintaining a number of open-sources software packages\n\niq\ncountdata\nmsproteomics\naiproteomics\nion\n\nLong-term maintenance of published software is not supported by research funding. If you find these software packages useful, please consider supporting us."
+  }
+]
