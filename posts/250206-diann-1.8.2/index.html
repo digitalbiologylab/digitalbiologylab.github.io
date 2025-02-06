@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thang V. Pham">
+<meta name="dcterms.date" content="2025-02-06">
 
-<title>team – Digital Biology Lab</title>
+<title>Processing DIA-NN 1.8.1 output – Digital Biology Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9f447091f8b1454dcd9b1558d5056ce7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../dbl.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9f447091f8b1454dcd9b1558d5056ce7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -78,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Digital Biology Lab</span>
     </a>
   </div>
@@ -89,20 +92,26 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./team.html" aria-current="page"> 
-<span class="menu-text">Team</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software.html"> 
+    <a class="nav-link" href="../../software.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./datasets.html"> 
+    <a class="nav-link" href="../../datasets.html"> 
 <span class="menu-text">Datasets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../members.html"> 
+<span class="menu-text">Researchers</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../supportus.html"> 
+<span class="menu-text">Support us</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -117,25 +126,258 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Processing DIA-NN 1.8.1 output</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">iq</div>
+    <div class="quarto-category">protein quantification</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
-<p><font size="4"><strong>Team</strong></font></p>
-<ul>
-<li><p>Pham Viet Thang, PhD, Amsterdam UMC &amp; Vietnam National University</p></li>
-<li><p>Tran Phuc Khang (VNU, topic: Effects of neutral losses in data-independent acquisition mass spectrometry-based proteomics)</p></li>
-<li><p>Doan Van Phong (VNU, topic: encoding of phosphorylated peptides for deep neural networks)</p></li>
-</ul>
-<p><font size="4"><strong>Former members</strong></font></p>
-<ul>
-<li><p>Le Gia Duc (VinUni, internship at Amsterdam UMC, topic: protein quantification)</p></li>
-<li><p>Can Ha An (VinUni, internship at Amsterdam UMC, topic: protein quantification)</p></li>
-<li><p>Bui Huy Linh Phuc (VinUni, internship at Amsterdam UMC, topic: protein quantification)</p></li>
-</ul>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Thang V. Pham </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p>We processed the Bruderer15 dataset (Bruderer et al., <em>MCP</em> 2015) using DIA-NN 1.8.1 (Demichev et al., <em>Nature Methods</em> 2020) with the switch <code>--report-lib-info</code> turned on. The switch gives an extra column <code>Fragment.Info</code> to test iq’s new feature. Usually, the user does not need to turn it on.</p>
+<p>Download <a href="https://zenodo.org/records/14823673/files/report.zip?download=1">DIA-NN output report.zip</a> and unzip the file to obtain the long format ouput <code>report.tsv</code> (Pham, <em>Zenodo</em> 2025, <a href="https://doi.org/10.5281/zenodo.14823673" class="uri">https://doi.org/10.5281/zenodo.14823673</a>).</p>
+<p>A protein group report for downstream analysis can be obtained with a single statement in R</p>
+<pre><code>library(iq)
+process_long_format("report.tsv", output_filename = "report-pg.tsv")</code></pre>
+<p>As an aside, usually the user wants to include additional annotation columns in the final report. This is possible by specifying the <code>annotation_col</code> parameter.</p>
+<pre><code>process_long_format("report.tsv", output_filename = "report-pg-annotated.tsv",
+                    annotation_col = c("Protein.Names", "Genes"))</code></pre>
+<p>Also, by default, we filter the report at 1% run-sepcific FDR at both precursor level and protein group level. To filter global FDR (available with a recent version of DIA-NN), use the parameter <code>filter_double_less</code>.</p>
+<pre><code>process_long_format("report.tsv", output_filename = "report-pg-global.tsv", 
+                    annotation_col = c("Protein.Names", "Genes"),
+                    filter_double_less = c("Global.Q.Value" = "0.01", "Global.PG.Q.Value" = "0.01"))  </code></pre>
+<p>We continue with loading the result file <code>report-pg.tsv</code> to check the quantitative values of the spike-in proteins. For convenience, we will use the spike-in protein names instead of the protein group names.</p>
+<pre><code>pg &lt;- read.delim("report-pg.tsv")
+rownames(pg) &lt;- pg$Protein.Group
+
+spike_ins &lt;- c("P02754", "P80025", "P00921", "P00366", "P02662", # mix 1
+               "P61823", "P02789", "P12799", "P02676", "P02672", # mix 2
+               "P02666", "P68082")                               # mix 3
+
+# change rownames to spike_ins names
+for (i in 1: length(spike_ins)) {
+    rownames(pg)[grep(spike_ins[i], rownames(pg))] &lt;- spike_ins[i]
+}</code></pre>
+<section id="mix-1" class="level5">
+<h5 class="anchored" data-anchor-id="mix-1">Mix 1</h5>
+<p>Here is the ground truth for proteins in Mix 1 (P02754, P80025, P00921, P00366, P02662). Each sample was measured in triplicate.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sample</th>
+<th>relative</th>
+<th>fmol/ul</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1.5</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1.1</td>
+<td>1.65</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1.21</td>
+<td>1.815</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>1.33</td>
+<td>1.995</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>10</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>11.01</td>
+<td>16.515</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>12.11</td>
+<td>18.165</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>13.33</td>
+<td>19.995</td>
+</tr>
+</tbody>
+</table>
+<pre><code>matplot(t(pg[spike_ins[1:5], 2:25]), type = 'b', col = 1:5 , pch=19, lwd = 3,
+        ylab="log2 MaxLFQ", main = "Mix 1", xlab = "8 samples x 3 replicates")
+legend("topleft", legend = spike_ins[1:5], col = 1:5, pch=19, bty = "n")</code></pre>
+<p><img src="spikein-mix1.svg" class="img-fluid" style="width:100.0%"></p>
+<p>We see that the triplicates are consistent and the spikeins in first 4 samples (12 runs) are about 10 fold down as expected (log2(10) ~ 3.3).</p>
+</section>
+<section id="mix-2" class="level5">
+<h5 class="anchored" data-anchor-id="mix-2">Mix 2</h5>
+<p>Here is the ground truth of proteins in Mix 2 (P61823, P02789, P12799, P02676, P02672).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sample</th>
+<th>relative</th>
+<th>fmol/ul</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>200</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>125.99</td>
+<td>62.995</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>79.37</td>
+<td>39.685</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>50</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>2.52</td>
+<td>1.26</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>1.59</td>
+<td>0.795</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>1</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+<pre><code>matplot(t(pg[spike_ins[6:10], 2:25]), type = 'b', col = 1:5 , pch=19, lwd = 3,
+        ylab="log2 MaxLFQ", main = "Mix 2", xlab = "8 samples x 3 replicates")
+legend("topright", legend = spike_ins[6:10], col = 1:5, pch=19, bty = "n")</code></pre>
+<p><img src="spikein-mix2.svg" class="img-fluid" style="width:100.0%"></p>
+<p>In this mix, proteins in the first 4 samples are higher. Fold change between sample 1 and sample 5 is 50, which is approximately 5.6 in log2 space.</p>
+</section>
+<section id="mix-3" class="level5">
+<h5 class="anchored" data-anchor-id="mix-3">Mix 3</h5>
+<p>Here is the ground truth of proteins in Mix 3 (P02666, P68082).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sample</th>
+<th>relative</th>
+<th>fmol/ul</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0.05</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>4</td>
+<td>0.2</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>16</td>
+<td>0.8</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>64</td>
+<td>3.2</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>256</td>
+<td>12.8</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>1024</td>
+<td>51.2</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>4096</td>
+<td>204.8</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>16384</td>
+<td>819.2</td>
+</tr>
+</tbody>
+</table>
+<pre><code>
+matplot(t(pg[spike_ins[11:12], 2:25]), type = 'b', col = 1:6 , pch=19, lwd = 3,
+        ylab="log2 MaxLFQ", main = "Mix 3", xlab = "8 samples x 3 replicates")
+legend("topleft", legend = spike_ins[11:12], col = 1:2, pch=19, bty = "n")</code></pre>
+<p><img src="spikein-mix3.svg" class="img-fluid" style="width:100.0%"></p>
+<p>In this mix, the protein concentration increases 4 fold from sample 1 to sample 8. Thus, we expect a staircase shape with an increase of 2 in log2 space.</p>
+</section>
+<section id="random-12-proteins" class="level5">
+<h5 class="anchored" data-anchor-id="random-12-proteins">Random 12 proteins</h5>
+<pre><code>set.seed(0)
+matplot(t(pg[sample(1:nrow(pg), 12), 2:25]), type = 'b', col = 1:6 , pch=19, lwd = 3,
+        ylab="log2 MaxLFQ", main = "Random 12 proteins", xlab = "8 samples x 3 replicates")</code></pre>
+<p><img src="spikein-random.svg" class="img-fluid" style="width:100.0%"></p>
+<p>This is a set of 12 random proteins in the background. High abundance proteins show a consistent pattern while lower abundance proteins exhibits more variation and missing data, which is expected from mass spectrometry-based proteomics data.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
