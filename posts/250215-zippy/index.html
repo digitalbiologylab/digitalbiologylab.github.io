@@ -163,10 +163,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>To upload timsTOF data to ProteomeXchange, we have to create a single file for each .d data folder. One can zip each folder by right-click and send-to a compressed zipped folder. For tens or hundreds of folders, that process is tedious.</p>
-<p>I previously used <code>tar</code> in a Unix command line <code>for file in *.d; do tar cvf $file.tar $file; done</code>. But that requires a Unix-like system like Cygwin installed.</p>
+<p>I previously used <code>tar</code> in a Unix command line <code>for file in *.d; do tar cvf $file.tar $file; done</code>. But that requires a Unix-like system like Cygwin installed on your Windows machine.</p>
 <p>It turns out that <code>tar</code> is also available on Windows 10/11! If you want to zip all timsTOF .d data folders, open a command prompt, go to the folder containing all the .d folders, and type</p>
 <p><code>for /d %v in (*.d) do tar.exe -a -c -v -f "%v.zip" "%v"</code></p>
-<p>You can place the command in a batch file (use %% inplace of %). Or just download <a href="https://github.com/digitalbiologylab/script/releases/download/zippy/zippy.bat">zippy.bat</a> to where the .d data folders are and run it.</p>
+<p>You can place the command in a batch file (use %% in place of %). Or just download <a href="https://github.com/digitalbiologylab/script/releases/download/zippy/zippy.bat">zippy.bat</a> to where the .d data folders are and run it.</p>
 <p>Enjoy.</p>
 
 
