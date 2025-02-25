@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thang V. Pham">
+<meta name="dcterms.date" content="2025-02-25">
 
-<title>members – Digital Biology Lab</title>
+<title>A Kruskal-Wallis test is added to ion – Digital Biology Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./dbl.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9f447091f8b1454dcd9b1558d5056ce7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../dbl.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9f447091f8b1454dcd9b1558d5056ce7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -79,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Digital Biology Lab</span>
     </a>
   </div>
@@ -90,25 +92,25 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software.html"> 
+    <a class="nav-link" href="../../software.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./datasets.html"> 
+    <a class="nav-link" href="../../datasets.html"> 
 <span class="menu-text">Datasets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./members.html" aria-current="page"> 
+    <a class="nav-link" href="../../members.html"> 
 <span class="menu-text">People</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./supportus.html"> 
+    <a class="nav-link" href="../../supportus.html"> 
 <span class="menu-text">Support us</span></a>
   </li>  
 </ul>
@@ -124,30 +126,49 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">A Kruskal-Wallis test is added to ion</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">ion</div>
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">script</div>
+    <div class="quarto-category">statistics</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
-<ul>
-<li><p>Pham Viet Thang, PhD (Amsterdam UMC &amp; Vietnam National University, topic: computational genomics and proteomics, AI, machine learning, life sciences).</p></li>
-<li><p>Nguyen Van Vinh, PhD (Vietnam National University, topic: AI, natural language processing, deep learning, health care)</p></li>
-<li><p>Do Minh Duc (VNU, topic: protein kinase and substrates)</p></li>
-<li><p>Toan Nguyen (VNU, topic: phosphoproteomics)</p></li>
-<li><p>Pham Huy Chau Long (VNU, <a href="https://github.com/LongSei">github</a>, topic: generative AI, protein quantification)</p></li>
-<li><p>Tran Phuc Khang (VNU, topic: Effects of neutral losses in data-independent acquisition mass spectrometry-based proteomics)</p></li>
-<li><p>Doan Van Phong (VNU, topic: encoding of phosphorylated peptides for deep neural networks)</p></li>
-</ul>
-<section id="former-members" class="level4">
-<h4 class="anchored" data-anchor-id="former-members">Former members</h4>
-<ul>
-<li><p>Le Gia Duc (2024, VinUni, internship at Amsterdam UMC, topic: protein quantification)</p></li>
-<li><p>Can Ha An (2024, VinUni, internship at Amsterdam UMC, topic: protein quantification)</p></li>
-<li><p>Bui Huy Linh Phuc (2024, VinUni, internship at Amsterdam UMC, topic: protein quantification)</p></li>
-</ul>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Thang V. Pham </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 25, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-</section>
+</header>
+
+
+<p>I’ve added a script to <a href="https://tvpham.github.io/ion/">ion</a> to perform a Kruskal-Wallis test for each row in a data matrix (<code>ion$kruskal_test_3g</code>). This statistical test is a non-parametric test and can be seen as a multi-group generalization of the Mann-Whitney test (or Wilcoxon test) for two-group comparisons.</p>
+<p>A non-parametric test is robust and applicable to various types of data including spectral count data and intensity-based quantification in proteomics. Nevertheless, it requires a larger number of samples than a parametric test such as the beta-binomial test or the t-test. I expect that 10 samples per group are sufficient. I’ve read somewhere that 15 should be the minimum. But I have also seen studies using a non-parametric test for 5 samples per group. In short, there is no hard rule that I am aware of.</p>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
