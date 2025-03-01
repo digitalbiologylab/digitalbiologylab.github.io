@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thang V. Pham">
+<meta name="dcterms.date" content="2025-03-01">
 
-<title>blog – Digital Biology Lab</title>
+<title>DIA-NN 2.0 and tsv file output – Digital Biology Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +22,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./dbl.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-240a6943d9d78a09c45e903322a5cb9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../dbl.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-240a6943d9d78a09c45e903322a5cb9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,77 +103,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Digital Biology Lab</span>
     </a>
   </div>
@@ -150,25 +126,25 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software.html"> 
+    <a class="nav-link" href="../../software.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./datasets.html"> 
+    <a class="nav-link" href="../../datasets.html"> 
 <span class="menu-text">Datasets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./members.html"> 
+    <a class="nav-link" href="../../members.html"> 
 <span class="menu-text">People</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./supportus.html"> 
+    <a class="nav-link" href="../../supportus.html"> 
 <span class="menu-text">Support us</span></a>
   </li>  
 </ul>
@@ -179,215 +155,123 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="aW9u">ion <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aXE=">iq <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvdGVpbiUyMHF1YW50aWZpY2F0aW9u">protein quantification <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c2NyaXB0">script <span class="quarto-category-count">(3)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DIA-NN 2.0 and tsv file output</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">iq</div>
+    <div class="quarto-category">protein quantification</div>
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">script</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Thang V. Pham </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
 
 
+<p>From version 2.0, DIA-NN stops producing output in the tab-delimited text format (.tsv). It uses the parquet data format. In our experiments, a .parquet file output is about 10 times smaller than the equivalent .tsv file. If your downstream processing tool requires a .tsv file as input, you can convert a .parquet file to .tsv file using the R package <code>arrow</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">"arrow"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if the package "arrow" is not available, you can install it by </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("arrow") </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(arrow<span class="sc">::</span><span class="fu">read_parquet</span>(<span class="st">"report.parquet"</span>), <span class="st">"report.tsv"</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="dia-ms-quantification-at-the-fragment-level" class="level3">
+<h3 class="anchored" data-anchor-id="dia-ms-quantification-at-the-fragment-level">DIA-MS quantification at the fragment level</h3>
+<p>For protein quantification using MS/MS fragments, one needs to switch on the <code>--export-quant</code> flag</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="export-quant.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of the DIA-NN 2.0.2 parameter box</figcaption>
+</figure>
+</div>
+<p>The fragment intensities will be in the .parquet file columns <code>Fr.0.Quantity</code>, <code>Fr.1.Quantity</code>, and so on till <code>Fr.11.Quantity</code>. We can combine all quantitative information in a new column called <code>Intensities</code> as input to the <code>iq</code> R package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">read_parquet</span>(<span class="st">"report.parquet"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>raw<span class="sc">$</span>Intensities <span class="ot">=</span> <span class="fu">paste</span>(raw<span class="sc">$</span>Fr.<span class="fl">0.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">1.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">2.</span>Quantity, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">3.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">4.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">5.</span>Quantity, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">6.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">7.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">8.</span>Quantity, </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">9.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">10.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">11.</span>Quantity, <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(raw, <span class="st">"report.tsv"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can then process the resulting <code>report.tsv</code> file using <code>iq</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>iq<span class="sc">::</span><span class="fu">process_long_format</span>(<span class="st">"report.tsv"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">output_filename =</span> <span class="st">"report-protein-group.txt"</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sample_id =</span> <span class="st">"Run"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">intensity_col =</span> <span class="st">"Intensities"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">annotation_col =</span> <span class="fu">c</span>(<span class="st">"Protein.Ids"</span>,<span class="st">"Protein.Names"</span>, <span class="st">"Genes"</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">filter_double_less =</span> <span class="fu">c</span>(<span class="st">"Q.Value"</span> <span class="ot">=</span> <span class="st">"0.01"</span>, <span class="st">"PG.Q.Value"</span> <span class="ot">=</span> <span class="st">"0.05"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">"Lib.Q.Value"</span> <span class="ot">=</span> <span class="st">"0.01"</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                                               <span class="st">"Lib.PG.Q.Value"</span> <span class="ot">=</span> <span class="st">"0.01"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-smaller-tsv-file" class="level3">
+<h3 class="anchored" data-anchor-id="a-smaller-tsv-file">A smaller tsv file</h3>
+<p>You can also just store necessary columns for <code>iq</code> processing, or filtering out fragments that will not be used, or both.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">read_parquet</span>(<span class="st">"report.parquet"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>raw<span class="sc">$</span>Intensities <span class="ot">=</span> <span class="fu">paste</span>(raw<span class="sc">$</span>Fr.<span class="fl">0.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">1.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">2.</span>Quantity, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">3.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">4.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">5.</span>Quantity, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">6.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">7.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">8.</span>Quantity, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">9.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">10.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">11.</span>Quantity, <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> raw<span class="sc">$</span>Q.Value <span class="sc">&lt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> raw<span class="sc">$</span>PG.Q.Value <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            raw<span class="sc">$</span>Lib.Q.Value <span class="sc">&lt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> raw<span class="sc">$</span>Lib.PG.Q.Value <span class="sc">&lt;</span> <span class="fl">0.01</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> raw[selected, <span class="fu">c</span>(<span class="st">"Run"</span>, <span class="st">"Protein.Group"</span>, <span class="st">"Precursor.Id"</span>, <span class="st">"Precursor.Normalised"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Protein.Ids"</span>,<span class="st">"Protein.Names"</span>, <span class="st">"Genes"</span>, <span class="st">"Intensities"</span>)]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(raw, <span class="st">"report-trimmed.tsv"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>iq<span class="sc">::</span><span class="fu">process_long_format</span>(<span class="st">"report-trimmed.tsv"</span>, </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">output_filename =</span> <span class="st">"report-protein-group-trimmed.txt"</span>, </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sample_id =</span> <span class="st">"Run"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">intensity_col =</span> <span class="st">"Intensities"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                    <span class="at">annotation_col =</span> <span class="fu">c</span>(<span class="st">"Protein.Ids"</span>,<span class="st">"Protein.Names"</span>, <span class="st">"Genes"</span>),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                    <span class="at">filter_double_less =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="open-a-big-tsv-file-with-excel" class="level3">
+<h3 class="anchored" data-anchor-id="open-a-big-tsv-file-with-excel">Open a big tsv file with Excel</h3>
+<p>Usually not a good idea. A big .tsv file is not suitable for Excel. I often look at the head of the file to check if the headers are ok.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On Unix-like systems</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> report.tsv <span class="op">&gt;</span> report-head.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On Window PowerShell</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span> report.tsv <span class="at">-head</span> 10 <span class="op">&gt;</span> report-head.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The resulting file <code>report-head.tsv</code> can be easily opened by Excel for examination.</p>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="aXElMkNwcm90ZWluJTIwcXVhbnRpZmljYXRpb24lMkNSJTJDc2NyaXB0" data-listing-date-sort="1740783600000" data-listing-file-modified-sort="1740831224486" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="855">
-<div class="thumbnail">
-<p><a href="./posts/220301-parquet-tsv/index.html" class="no-external"></a></p><a href="./posts/220301-parquet-tsv/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/220301-parquet-tsv/parquet2tsv.svg" class="thumbnail-image"></p>
-</a><p><a href="./posts/220301-parquet-tsv/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/220301-parquet-tsv/index.html" class="no-external">DIA-NN 2.0 and tsv file output</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/220301-parquet-tsv/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('aXE='); return false;">
-iq
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('cHJvdGVpbiUyMHF1YW50aWZpY2F0aW9u'); return false;">
-protein quantification
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('c2NyaXB0'); return false;">
-script
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/220301-parquet-tsv/index.html" class="no-external">From version 2.0, DIA-NN stops producing output in the tab-delimited text format (.tsv). It uses the parquet data format. In our experiments, a .parquet file output is about…<code></code></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/220301-parquet-tsv/index.html" class="no-external">
-<div class="listing-date">
-Mar 1, 2025
-</div>
-<div class="listing-author">
-Thang V. Pham
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="aW9uJTJDUiUyQ3NjcmlwdCUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1740438000000" data-listing-file-modified-sort="1740470981164" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="129">
-<div class="thumbnail">
-<p><a href="./posts/250224-kruskal-wallis/index.html" class="no-external"></a></p><a href="./posts/250224-kruskal-wallis/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/250224-kruskal-wallis/Kruskal-Wallis.svg" class="thumbnail-image"></p>
-</a><p><a href="./posts/250224-kruskal-wallis/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/250224-kruskal-wallis/index.html" class="no-external">A Kruskal-Wallis test is added to ion</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/250224-kruskal-wallis/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('aW9u'); return false;">
-ion
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('c2NyaXB0'); return false;">
-script
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">
-statistics
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/250224-kruskal-wallis/index.html" class="no-external">I’ve added a script to ion to perform a Kruskal-Wallis test for each row in a data matrix (<code>ion$kruskal_test_3g</code>). This statistical test is a non-parametric test and can be…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/250224-kruskal-wallis/index.html" class="no-external">
-<div class="listing-date">
-Feb 25, 2025
-</div>
-<div class="listing-author">
-Thang V. Pham
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="c2NyaXB0" data-listing-date-sort="1739574000000" data-listing-file-modified-sort="1740829324930" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="148">
-<div class="thumbnail">
-<p><a href="./posts/250215-zippy/index.html" class="no-external"></a></p><a href="./posts/250215-zippy/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/250215-zippy/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/250215-zippy/index.html" class="no-external">One command to zip them all</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/250215-zippy/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('c2NyaXB0'); return false;">
-script
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/250215-zippy/index.html" class="no-external">To upload timsTOF data to ProteomeXchange, we have to create a single file for each .d data folder. One can zip each folder by right-click and send-to a compressed zipped…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/250215-zippy/index.html" class="no-external">
-<div class="listing-date">
-Feb 15, 2025
-</div>
-<div class="listing-author">
-Thang V. Pham
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="aXElMkNwcm90ZWluJTIwcXVhbnRpZmljYXRpb24=" data-listing-date-sort="1738796400000" data-listing-file-modified-sort="1740829399287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1218">
-<div class="thumbnail">
-<p><a href="./posts/250206-diann-1.8.2/index.html" class="no-external"></a></p><a href="./posts/250206-diann-1.8.2/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/250206-diann-1.8.2/spikein-mix1.svg" class="thumbnail-image"></p>
-</a><p><a href="./posts/250206-diann-1.8.2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/250206-diann-1.8.2/index.html" class="no-external">Processing DIA-NN 1.8.1 output</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/250206-diann-1.8.2/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('aXE='); return false;">
-iq
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('cHJvdGVpbiUyMHF1YW50aWZpY2F0aW9u'); return false;">
-protein quantification
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/250206-diann-1.8.2/index.html" class="no-external">We processed the Bruderer15 dataset (Bruderer et al., <em>MCP</em> 2015) using DIA-NN 1.8.1 (Demichev et al., <em>Nature Methods</em> 2020) with the switch <code>--report-lib-info</code> turned on. The…<code></code></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/250206-diann-1.8.2/index.html" class="no-external">
-<div class="listing-date">
-Feb 6, 2025
-</div>
-<div class="listing-author">
-Thang V. Pham
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="bmV3cw==" data-listing-date-sort="1735340400000" data-listing-file-modified-sort="1738825129908" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/241228-hello-world/index.html" class="no-external"></a></p><a href="./posts/241228-hello-world/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\241228-hello-world\wordcloud.svg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/241228-hello-world/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/241228-hello-world/index.html" class="no-external">Hello world</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/241228-hello-world/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/241228-hello-world/index.html" class="no-external"></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/241228-hello-world/index.html" class="no-external">
-<div class="listing-date">
-Dec 28, 2024
-</div>
-<div class="listing-author">
-Thang V. Pham
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

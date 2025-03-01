@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9f447091f8b1454dcd9b1558d5056ce7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-240a6943d9d78a09c45e903322a5cb9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -166,27 +200,27 @@ ul.task-list li input[type="checkbox"] {
 <p>We processed the Bruderer15 dataset (Bruderer et al., <em>MCP</em> 2015) using DIA-NN 1.8.1 (Demichev et al., <em>Nature Methods</em> 2020) with the switch <code>--report-lib-info</code> turned on. The switch gives an extra column <code>Fragment.Info</code> to test iq’s new feature. Usually, the user does not need to turn it on.</p>
 <p>Download <a href="https://zenodo.org/records/14823673/files/report.zip?download=1">DIA-NN output report.zip</a> and unzip the file to obtain the long format ouput <code>report.tsv</code> (Pham, <em>Zenodo</em> 2025, <a href="https://doi.org/10.5281/zenodo.14823673" class="uri">https://doi.org/10.5281/zenodo.14823673</a>).</p>
 <p>A protein group report for downstream analysis can be obtained with a single statement in R</p>
-<pre><code>library(iq)
-process_long_format("report.tsv", output_filename = "report-pg.tsv")</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iq)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">process_long_format</span>(<span class="st">"report.tsv"</span>, <span class="at">output_filename =</span> <span class="st">"report-pg.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>As an aside, usually the user wants to include additional annotation columns in the final report. This is possible by specifying the <code>annotation_col</code> parameter.</p>
-<pre><code>process_long_format("report.tsv", output_filename = "report-pg-annotated.tsv",
-                    annotation_col = c("Protein.Names", "Genes"))</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">process_long_format</span>(<span class="st">"report.tsv"</span>, <span class="at">output_filename =</span> <span class="st">"report-pg-annotated.tsv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">annotation_col =</span> <span class="fu">c</span>(<span class="st">"Protein.Names"</span>, <span class="st">"Genes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Also, by default, we filter the report at 1% run-sepcific FDR at both precursor level and protein group level. To filter global FDR (available with a recent version of DIA-NN), use the parameter <code>filter_double_less</code>.</p>
-<pre><code>process_long_format("report.tsv", output_filename = "report-pg-global.tsv", 
-                    annotation_col = c("Protein.Names", "Genes"),
-                    filter_double_less = c("Global.Q.Value" = "0.01", "Global.PG.Q.Value" = "0.01"))  </code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">process_long_format</span>(<span class="st">"report.tsv"</span>, <span class="at">output_filename =</span> <span class="st">"report-pg-global.tsv"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">annotation_col =</span> <span class="fu">c</span>(<span class="st">"Protein.Names"</span>, <span class="st">"Genes"</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">filter_double_less =</span> <span class="fu">c</span>(<span class="st">"Global.Q.Value"</span> <span class="ot">=</span> <span class="st">"0.01"</span>, <span class="st">"Global.PG.Q.Value"</span> <span class="ot">=</span> <span class="st">"0.01"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We continue with loading the result file <code>report-pg.tsv</code> to check the quantitative values of the spike-in proteins. For convenience, we will use the spike-in protein names instead of the protein group names.</p>
-<pre><code>pg &lt;- read.delim("report-pg.tsv")
-rownames(pg) &lt;- pg$Protein.Group
-
-spike_ins &lt;- c("P02754", "P80025", "P00921", "P00366", "P02662", # mix 1
-               "P61823", "P02789", "P12799", "P02676", "P02672", # mix 2
-               "P02666", "P68082")                               # mix 3
-
-# change rownames to spike_ins names
-for (i in 1: length(spike_ins)) {
-    rownames(pg)[grep(spike_ins[i], rownames(pg))] &lt;- spike_ins[i]
-}</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pg <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"report-pg.tsv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(pg) <span class="ot">&lt;-</span> pg<span class="sc">$</span>Protein.Group</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>spike_ins <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"P02754"</span>, <span class="st">"P80025"</span>, <span class="st">"P00921"</span>, <span class="st">"P00366"</span>, <span class="st">"P02662"</span>, <span class="co"># mix 1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">"P61823"</span>, <span class="st">"P02789"</span>, <span class="st">"P12799"</span>, <span class="st">"P02676"</span>, <span class="st">"P02672"</span>, <span class="co"># mix 2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">"P02666"</span>, <span class="st">"P68082"</span>)                               <span class="co"># mix 3</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># change rownames to spike_ins names</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span> <span class="fu">length</span>(spike_ins)) {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(pg)[<span class="fu">grep</span>(spike_ins[i], <span class="fu">rownames</span>(pg))] <span class="ot">&lt;-</span> spike_ins[i]</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="mix-1" class="level5">
 <h5 class="anchored" data-anchor-id="mix-1">Mix 1</h5>
 <p>Here is the ground truth for proteins in Mix 1 (P02754, P80025, P00921, P00366, P02662). Each sample was measured in triplicate.</p>
@@ -241,9 +275,9 @@ for (i in 1: length(spike_ins)) {
 </tr>
 </tbody>
 </table>
-<pre><code>matplot(t(pg[spike_ins[1:5], 2:25]), type = 'b', col = 1:5 , pch=19, lwd = 3,
-        ylab="log2 MaxLFQ", main = "Mix 1", xlab = "8 samples x 3 replicates")
-legend("topleft", legend = spike_ins[1:5], col = 1:5, pch=19, bty = "n")</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">t</span>(pg[spike_ins[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">2</span><span class="sc">:</span><span class="dv">25</span>]), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> , <span class="at">pch=</span><span class="dv">19</span>, <span class="at">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">"log2 MaxLFQ"</span>, <span class="at">main =</span> <span class="st">"Mix 1"</span>, <span class="at">xlab =</span> <span class="st">"8 samples x 3 replicates"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> spike_ins[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="spikein-mix1.svg" class="img-fluid" style="width:100.0%"></p>
 <p>We see that the triplicates are consistent and the spikeins in first 4 samples (12 runs) are about 10 fold down as expected (log2(10) ~ 3.3).</p>
 </section>
@@ -301,9 +335,9 @@ legend("topleft", legend = spike_ins[1:5], col = 1:5, pch=19, bty = "n")</code><
 </tr>
 </tbody>
 </table>
-<pre><code>matplot(t(pg[spike_ins[6:10], 2:25]), type = 'b', col = 1:5 , pch=19, lwd = 3,
-        ylab="log2 MaxLFQ", main = "Mix 2", xlab = "8 samples x 3 replicates")
-legend("topright", legend = spike_ins[6:10], col = 1:5, pch=19, bty = "n")</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">t</span>(pg[spike_ins[<span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>], <span class="dv">2</span><span class="sc">:</span><span class="dv">25</span>]), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> , <span class="at">pch=</span><span class="dv">19</span>, <span class="at">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">"log2 MaxLFQ"</span>, <span class="at">main =</span> <span class="st">"Mix 2"</span>, <span class="at">xlab =</span> <span class="st">"8 samples x 3 replicates"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> spike_ins[<span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>], <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="spikein-mix2.svg" class="img-fluid" style="width:100.0%"></p>
 <p>In this mix, proteins in the first 4 samples are higher. Fold change between sample 1 and sample 5 is 50, which is approximately 5.6 in log2 space.</p>
 </section>
@@ -361,18 +395,18 @@ legend("topright", legend = spike_ins[6:10], col = 1:5, pch=19, bty = "n")</code
 </tr>
 </tbody>
 </table>
-<pre><code>
-matplot(t(pg[spike_ins[11:12], 2:25]), type = 'b', col = 1:6 , pch=19, lwd = 3,
-        ylab="log2 MaxLFQ", main = "Mix 3", xlab = "8 samples x 3 replicates")
-legend("topleft", legend = spike_ins[11:12], col = 1:2, pch=19, bty = "n")</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">t</span>(pg[spike_ins[<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">2</span><span class="sc">:</span><span class="dv">25</span>]), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> , <span class="at">pch=</span><span class="dv">19</span>, <span class="at">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">"log2 MaxLFQ"</span>, <span class="at">main =</span> <span class="st">"Mix 3"</span>, <span class="at">xlab =</span> <span class="st">"8 samples x 3 replicates"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> spike_ins[<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="spikein-mix3.svg" class="img-fluid" style="width:100.0%"></p>
 <p>In this mix, the protein concentration increases 4 fold from sample 1 to sample 8. Thus, we expect a staircase shape with an increase of 2 in log2 space.</p>
 </section>
 <section id="random-12-proteins" class="level5">
 <h5 class="anchored" data-anchor-id="random-12-proteins">Random 12 proteins</h5>
-<pre><code>set.seed(0)
-matplot(t(pg[sample(1:nrow(pg), 12), 2:25]), type = 'b', col = 1:6 , pch=19, lwd = 3,
-        ylab="log2 MaxLFQ", main = "Random 12 proteins", xlab = "8 samples x 3 replicates")</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">t</span>(pg[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pg), <span class="dv">12</span>), <span class="dv">2</span><span class="sc">:</span><span class="dv">25</span>]), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> , <span class="at">pch=</span><span class="dv">19</span>, <span class="at">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">"log2 MaxLFQ"</span>, <span class="at">main =</span> <span class="st">"Random 12 proteins"</span>, <span class="at">xlab =</span> <span class="st">"8 samples x 3 replicates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="spikein-random.svg" class="img-fluid" style="width:100.0%"></p>
 <p>This is a set of 12 random proteins in the background. High abundance proteins show a consistent pattern while lower abundance proteins exhibits more variation and missing data, which is expected from mass spectrometry-based proteomics data.</p>
 
