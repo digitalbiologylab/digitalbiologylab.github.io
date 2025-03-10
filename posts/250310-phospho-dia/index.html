@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thang V. Pham &amp; Pham Huy Chau Long">
+<meta name="dcterms.date" content="2025-03-10">
 
-<title>datasets – Digital Biology Lab</title>
+<title>Phosphorylation site report from a DIA-MS experiment – Digital Biology Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +22,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./dbl.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-240a6943d9d78a09c45e903322a5cb9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../dbl.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-240a6943d9d78a09c45e903322a5cb9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -79,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Digital Biology Lab</span>
     </a>
   </div>
@@ -90,25 +126,25 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./software.html"> 
+    <a class="nav-link" href="../../software.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./datasets.html" aria-current="page"> 
+    <a class="nav-link" href="../../datasets.html"> 
 <span class="menu-text">Datasets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./members.html"> 
+    <a class="nav-link" href="../../members.html"> 
 <span class="menu-text">People</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./supportus.html"> 
+    <a class="nav-link" href="../../supportus.html"> 
 <span class="menu-text">Support us</span></a>
   </li>  
 </ul>
@@ -124,18 +160,96 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Phosphorylation site report from a DIA-MS experiment</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">phosphoproteomics</div>
+    <div class="quarto-category">DIA-MS</div>
+    <div class="quarto-category">msproteomics</div>
+    <div class="quarto-category">sitereport</div>
+    <div class="quarto-category">script</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="bruderer-dia-ms-data-mcp-2015-processed-by-dia-nn-1.8.1" class="level4">
-<h4 class="anchored" data-anchor-id="bruderer-dia-ms-data-mcp-2015-processed-by-dia-nn-1.8.1">Bruderer DIA-MS data (MCP 2015) processed by DIA-NN 1.8.1</h4>
-<p>Pham, T. V. (2025). Bruderer DIA-MS data processed by DIA-NN 1.8.1. [Data set]. Zenodo <a href="https://doi.org/10.5281/zenodo.14823673" class="uri">https://doi.org/10.5281/zenodo.14823673</a></p>
-</section>
-<section id="skowronek-dia-ms-phosphoproteomics-data-mcp-2022-processed-by-dia-nn-2.0.2" class="level4">
-<h4 class="anchored" data-anchor-id="skowronek-dia-ms-phosphoproteomics-data-mcp-2022-processed-by-dia-nn-2.0.2">Skowronek DIA-MS phosphoproteomics data (MCP 2022) processed by DIA-NN 2.0.2</h4>
-<p>Pham, T. V. (2025). A DIA-MS-based phosphoproteomics data processed by DIA-NN 2.0.2. [Data set]. Zenodo <a href="https://doi.org/10.5281/zenodo.15002613" class="uri">https://doi.org/10.5281/zenodo.15002613</a></p>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Thang V. Pham &amp; Pham Huy Chau Long </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 10, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://doi.org/10.1016/j.mcpro.2022.100279">Skowronek et al.&nbsp;2022</a> reported a large difference between the performance of Spectronaut and DIA-NN. For DIA-MS-based phosphoproteomics, one of the issues was that it was not easy to extract a phosphosite report from the different processing tools. In <a href="https://doi.org/10.1093/bioinformatics/btae432">Pham et al.&nbsp;2024</a>, we presented a software tool called <code>sitereport</code> in the Python package <a href="https://github.com/tvpham/msproteomics">msproteomics</a> to extract a phosphosite report for both Spectronaut and DIA-NN, allowing for a comparative assessment of their performances.</p>
+<p>We are curious about the new number of phosphosites for the newly released DIA-NN 2.0.2!</p>
+<p>To that end, we analyze the same dataset consisting of 4 timsTOF DIA-MS runs from Skowronek et al.&nbsp;by DIA-NN 2.0.2 using the same spectral library. The <code>--export-quant</code> switch is turned on. The result can be downloaded <a href="https://zenodo.org/records/15002613/files/report.parquet?download=1">here</a>.</p>
+<p>We then convert the DIA-NN parquet output to a tab-delimited text format. This can be done in R as in our previous <a href="https://digitalbiologylab.github.io/posts/250301-parquet-tsv/">blogpost</a>. Nevertheless, we have added a script in the latest release of the <code>msproteomics</code> package, version 1.1.0, for convenience. Note that installation of an additional Python package <code>pyarrow</code> is required for this step.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install pyarrow</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">diann_parquet_to_tsv</span> <span class="at">-i</span> report.parquet <span class="at">-o</span> report.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, we continue the processing as before</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">read_diann</span> <span class="at">-o</span> report_msproteomics.tsv <span class="at">-E</span> Intensities <span class="at">-f</span> uniprot-reviewed_yes_AND_organism__Homo_sapiens__Human___9606___.fasta report.tsv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sitereport</span> report_msproteomics.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="diann-1.8-vs-2.0.svg" class="img-fluid"></p>
+<p>The Venn diagram shows the number of phosphosites returned by the three different software packages/versions and their overlaps. DIA-NN 2.0.2 detects considerably more phosphosites than DIA-NN 1.8.2 beta 27, 23440 sites versus 19730 sites respectively. Note that the number of phosphosites includes multiplicities as in MaxQuant and Spectronaut. Please refer to our publication for detail.</p>
+<section id="other-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="other-filtering">Other filtering</h3>
+<p>According the discussion <a href="https://github.com/vdemichev/DiaNN/discussions/1130#discussioncomment-10327224">here</a>, another filtering for DIA-NN consists of</p>
+<blockquote class="blockquote">
+<ul>
+<li>both lib &amp; global q-value filter at 0.5 (that is 50%)</li>
+<li>both lib &amp; global peptidoform q-value filter at 0.5</li>
+<li>run-specific q-value filter 0.01</li>
+<li>run-specific PEP filter 0.01</li>
+<li>run-specific peptidoform q-value filter 0.01</li>
+<li>if using channels, run-specific channel q-value filter 0.01</li>
+</ul>
+</blockquote>
+<p>We can apply this filtering on the DIA-NN report prior to creating the tab-delimited text file. We will use R for this step</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">read_parquet</span>(<span class="st">"report.parquet"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>raw<span class="sc">$</span>Intensities <span class="ot">&lt;-</span> <span class="fu">paste</span>(raw<span class="sc">$</span>Fr.<span class="fl">0.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">1.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">2.</span>Quantity, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">3.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">4.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">5.</span>Quantity, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">6.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">7.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">8.</span>Quantity, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                        raw<span class="sc">$</span>Fr.<span class="fl">9.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">10.</span>Quantity, raw<span class="sc">$</span>Fr.<span class="fl">11.</span>Quantity, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> raw<span class="sc">$</span>Lib.Q.Value <span class="sc">&lt;=</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            raw<span class="sc">$</span>Global.Q.Value <span class="sc">&lt;=</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            raw<span class="sc">$</span>Lib.Peptidoform.Q.Value <span class="sc">&lt;=</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            raw<span class="sc">$</span>Global.Peptidoform.Q.Value <span class="sc">&lt;=</span> <span class="fl">0.5</span> <span class="sc">&amp;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            raw<span class="sc">$</span>Q.Value <span class="sc">&lt;=</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> raw<span class="sc">$</span>PEP <span class="sc">&lt;=</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            raw<span class="sc">$</span>Peptidoform.Q.Value <span class="sc">&lt;=</span> <span class="fl">0.01</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(raw[selected, ], <span class="st">"report-filtered.tsv"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then we process the filtered data as before, but without the default filters. This can be done by setting the values ‘none’ to the filters as follows.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">read_diann</span> <span class="at">-o</span> report_msproteomics-filtered.tsv <span class="at">-E</span> Intensities <span class="at">-f</span> uniprot-reviewed_yes_AND_organism__Homo_sapiens__Human___9606___.fasta report-filtered.tsv</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sitereport</span> report_msproteomics-filtered.tsv <span class="at">-output_site</span> new_filtering_site.tsv <span class="at">-output_peptide</span>  new_filtering_peptide.tsv <span class="at">-site_filter_double_less</span> none none <span class="at">-site_filter_double_greater</span> none none <span class="at">-peptide_filter_double_less</span> none none</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="diann2-filtering.svg" class="img-fluid"></p>
+<p>The number of sites with the new filtering is slightly less than the default msproteomics filtering. The a large number of overlapping sites suggests that the two filtering approaches are highly similar. Note that this is much higher than the number reported by DIA-NN site report, report.phosphosites_90.tsv (14441 sites) and report.phosphosites_99.tsv (12467 sites). This is most likely because msproteomics sitereport uses phosphorylation multiplicities.</p>
 
 
 </section>
