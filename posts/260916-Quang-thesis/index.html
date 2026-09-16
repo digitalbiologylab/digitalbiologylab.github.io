@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thang V. Pham">
-<meta name="dcterms.date" content="2026-09-15">
+<meta name="dcterms.date" content="2026-09-16">
 
-<title>Trích xuất bảng tài liệu và ứng dụng cho các hệ thống RAG – Digital Biology Lab</title>
+<title>Khám phá mạng lưới tương tác của hệ protein với mô hình ngôn ngữ lớn – Digital Biology Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Trích xuất bảng tài liệu và ứng dụng cho các hệ thống RAG</h1>
+<h1 class="title">Khám phá mạng lưới tương tác của hệ protein với mô hình ngôn ngữ lớn</h1>
   <div class="quarto-categories">
     <div class="quarto-category">AI</div>
   </div>
@@ -150,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 15, 2026</p>
+      <p class="date">September 16, 2026</p>
     </div>
   </div>
   
@@ -164,19 +164,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="260915-tab.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<p><img src="260916-phospho.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-<p>Bảng biểu là thành phần chứa thông tin định lượng cốt lõi trong các tài liệu khoa học, báo cáo tài chính và kỹ thuật. Tuy nhiên, việc trích xuất chính xác dữ liệu bảng từ các tài liệu định dạng PDF không cấu trúc vẫn là một trong những thách thức lớn nhất khi xây dựng cơ sở dữ liệu cho hệ thống Retrieval Augmented Generation. Khảo sát thực nghiệm trên tập dữ liệu chuẩn PubTabNet cho thấy các phương pháp truyền thống dựa trên luật và OCR thuần tuý đạt độ chính xác rất thấp do không xử lý được bảng không viền hoặc cấu trúc ô gộp phức tạp.</p>
-<p>Để giải quyết bài toán này, khóa luận đề xuất một quy trình trích xuất bảng dựa trên mô hình học sâu EfficientNet-B4 U-Net (khoảng 19.2 triệu tham số) cho bài toán phân đoạn ngữ nghĩa đa nhãn. Mô hình dự đoán đồng thời 5 lớp mặt nạ cấu trúc gồm ranh giới hàng, ranh giới cột, tiêu đề cột, tiêu đề hàng và vùng ô gộp. Quy trình được hoàn thiện với các bước hậu xử lý hình thái học để tái cấu trúc lưới ô, cùng cơ chế OCR theo từng ô riêng biệt nhằm tối ưu hóa độ chính xác nhận dạng văn bản.</p>
-<p>Kết quả thực nghiệm trên 200 ảnh ngẫu nhiên từ PubTabNet cho thấy phương pháp đề xuất đạt độ chính xác 80.48% ở mức ô, vượt hệ thống Docling của IBM (67.50%) khoảng 13 điểm phần trăm. Đặc biệt, số lượng mẫu đạt độ chính xác trên 90% (100/200) gấp gần hai lần so với Docling (53/200). Đầu ra của quy trình được chuẩn hóa dưới dạng Markdown, giúp tối ưu hóa khả năng truy xuất thông tin của các mô hình ngôn ngữ lớn. Định dạng này góp phần giảm thiểu hiện tượng sai lệch ngữ cảnh trong các hệ thống trí tuệ nhân tạo. Toàn bộ hệ thống được đóng gói thành thư viện Python mã nguồn mở mang tên ragtab, công bố công khai trên GitHub và PyPI, cho phép cộng đồng dễ dàng cài đặt và tích hợp vào các ứng dụng thực tế.</p>
-<p><strong>Từ khóa</strong>: Trích xuất bảng, Phân đoạn ngữ nghĩa, EfficientNet-B4, U-Net, Retrieval Augmented Generation.</p>
-<p><strong>GitHub</strong>:</p>
-<p><a href="https://github.com/tai03102004/rag-table" class="uri">https://github.com/tai03102004/rag-table</a></p>
-<p><a href="https://github.com/digitalbiologylab/rag-table" class="uri">https://github.com/digitalbiologylab/rag-table</a></p>
-<p><strong>PyPI</strong>:</p>
-<p><a href="https://pypi.org/project/ragtab/" class="uri">https://pypi.org/project/ragtab/</a></p>
-<p><em>Đinh Đức Tài, tóm tắt khóa luận tại Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội, 2026</em></p>
+<p>Phosphoryl hoá protein do các kinase điều khiển là cơ chế trung tâm của hầu hết quá trình truyền tín hiệu trong tế bào; rối loạn mạng lưới tương tác kinase–cơ chất (kinase–substrate) liên quan trực tiếp đến ung thư và nhiều bệnh lý nghiêm trọng. Tuy nhiên, phần lớn tri thức về các tương tác này nằm rải rác trong hàng trăm bài báo khoa học dạng PDF, khó tổng hợp thủ công. Khóa luận nghiên cứu việc khám phá mạng lưới tương tác của hệ protein bằng mô hình ngôn ngữ lớn (LLM): hệ thống trích xuất văn bản từ thư viện PDF phosphoproteomics, dùng LLM kết hợp kỹ thuật Truy hồi tăng cường sinh trên đồ thị (Graph-RAG, cụ thể là LightRAG) để tự động trích xuất các thực thể protein/kinase và quan hệ phosphoryl hoá, hình thành đồ thị tri thức và cho phép hỏi đáp, trực quan hoá mạng lưới kèm trích dẫn nguồn. Sản phẩm được hiện thực thành ứng dụng web full-stack (FastAPI, React, PostgreSQL) đóng gói bằng Docker, chạy hoàn toàn cục bộ nhằm bảo toàn tính riêng tư của tài liệu. Kết quả cho thấy hướng tiếp cận hỗ trợ hiệu quả việc khảo sát mạng kinase–cơ chất từ tài liệu khoa học.</p>
+<p><strong>Từ khóa</strong>: mạng tương tác protein, kinase–cơ chất, phosphoryl hoá, mô hình ngôn ngữ lớn, Graph-RAG, LightRAG, đồ thị tri thức.</p>
+<p><em>Nguyễn Phạm Việt Quang, tóm tắt khóa luận tại Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội, 2026</em></p>
 
 
 
